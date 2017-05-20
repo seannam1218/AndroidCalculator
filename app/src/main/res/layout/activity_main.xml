@@ -225,7 +225,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/bDec"
         android:background="#9bd27e"
-        android:onClick="onClickNumber"
+        android:onClick="onClickDec"
         android:layout_alignBaseline="@+id/bEqual"
         android:layout_alignBottom="@+id/bEqual"
         android:layout_toRightOf="@+id/b2"
