@@ -108,7 +108,6 @@
 
     <Button
         android:text="-"
-        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:id="@+id/bMinus"
         android:layout_below="@+id/bPlus"
@@ -116,7 +115,8 @@
         android:layout_alignParentEnd="true"
         android:background="@android:color/darker_gray"
         android:onClick="onClickOperator"
-        android:layout_above="@+id/b5" />
+        android:layout_above="@+id/b5"
+        android:layout_width="60dp" />
 
     <Button
         android:text="2"
@@ -142,14 +142,14 @@
 
     <Button
         android:text="*"
-        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:id="@+id/bMult"
         android:layout_below="@+id/bMinus"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@android:color/darker_gray"
-        android:onClick="onClickOperator" />
+        android:onClick="onClickOperator"
+        android:layout_width="60dp" />
 
     <Button
         android:text="+"
@@ -160,29 +160,29 @@
         android:layout_alignParentEnd="true"
         android:background="@android:color/darker_gray"
         android:onClick="onClickOperator"
-        android:layout_width="70dp" />
+        android:layout_width="60dp" />
 
     <Button
         android:text="/"
-        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:id="@+id/bDiv"
         android:layout_below="@+id/bMult"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@android:color/darker_gray"
-        android:onClick="onClickOperator" />
+        android:onClick="onClickOperator"
+        android:layout_width="60dp" />
 
     <Button
         android:text="="
-        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:id="@+id/bEqual"
         android:layout_below="@+id/bDiv"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="#c480cd"
-        android:onClick="onClickEqual" />
+        android:onClick="onClickEqual"
+        android:layout_width="60dp" />
 
     <Button
         android:text="7"

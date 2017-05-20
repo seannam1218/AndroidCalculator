@@ -64,9 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
     //Toggle the negative sign in front of current String on display.
     public void onClickNeg(View v) {
-        answer = Double.parseDouble(display) * (-1);
-        display = String.valueOf(answer);
-        updateScreen();
+        try {
+            answer = Double.parseDouble(display) * (-1);
+            display = String.valueOf(answer);
+            updateScreen();
+        } catch (Exception e) {
+            clear(ERROR_MSG);
+        }
     }
 
     //Remove the last number or character of the current String on display.
@@ -78,37 +82,49 @@ public class MainActivity extends AppCompatActivity {
     //Changes the currentOperator to the button clicked.
     //Assigns the current String (i.e. number) on display as the variable firstNum.
     public void onClickOperator(View v) {
-        Button b = (Button) v;
-        firstNum = Double.parseDouble(display);
-        currentOperator = b.getText().toString();
-        resetDisplay = true;
-        updateScreen();
-
+        try {
+            Button b = (Button) v;
+            firstNum = Double.parseDouble(display);
+            currentOperator = b.getText().toString();
+            resetDisplay = true;
+            updateScreen();
+        } catch (Exception e) {
+            clear(ERROR_MSG);
+        }
     }
 
     //Takes the current String on display, square roots it, and displays that answer.
     //That answer is automatically assigned as firstNum for future operations.
     public void onClickSqrt(View v) {
-        firstNum = Double.parseDouble(display);
-        //if firstNum is not a NaN and is bigger or equal to 0, square root the number and display it.
-        if (firstNum >= 0) {
-            answer = sqrt(firstNum);
-            firstNum = answer;
-            display = String.valueOf(answer);
-            resetDisplay = true;
-            updateScreen();
+        try {
+            firstNum = Double.parseDouble(display);
+            //if firstNum is not a NaN and is bigger or equal to 0, square root the number and display it.
+            if (firstNum >= 0) {
+                answer = sqrt(firstNum);
+                firstNum = answer;
+                display = String.valueOf(answer);
+                resetDisplay = true;
+                updateScreen();
+            }
+        } catch (Exception e) {
+            clear(ERROR_MSG);
         }
+
     }
 
     //Takes the current String on display, squares it, and displays that answer.
     //That answer is automatically assigned as firstNum for future operations.
     public void onClickSq(View v) {
-        firstNum = Double.parseDouble(display);
-        answer = firstNum * firstNum;
-        firstNum = answer;
-        display = String.valueOf(answer);
-        resetDisplay = true;
-        updateScreen();
+        try {
+            firstNum = Double.parseDouble(display);
+            answer = firstNum * firstNum;
+            firstNum = answer;
+            display = String.valueOf(answer);
+            resetDisplay = true;
+            updateScreen();
+        } catch (Exception e) {
+            clear(ERROR_MSG);
+        }
     }
 
     //Clears the display of numbers, displays a String msg, and resets all the variables to default.
