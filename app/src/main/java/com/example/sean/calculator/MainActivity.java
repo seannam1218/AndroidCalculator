@@ -6,13 +6,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import static java.lang.Double.NaN;
 import static java.lang.Math.sqrt;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView screen;
     private String DEFAULT_DISPLAY = "Thx for using Sean's Calculator";
-    private String ERROR_MSG = "Operation failed due to invalid number. Try again!";
+    private String ERROR_MSG = "Invalid number. Try again!";
     private String display = DEFAULT_DISPLAY;
     private boolean resetDisplay = true;
 
@@ -43,27 +44,55 @@ public class MainActivity extends AppCompatActivity {
         updateScreen();
     }
 
-    public void onClickErase(View v) {
+    public void onClickNeg(View v) {
+        answer = Double.parseDouble(display) * (-1);
+        display = String.valueOf(answer);
+        updateScreen();
+    }
+
+    public void onClickBackSpace(View v) {
         display = display.substring(0, display.length() - 1);
         updateScreen();
     }
 
     public void onClickOperator(View v) {
+        Button b = (Button) v;
         try {
             firstNum = Double.parseDouble(display);
-            Button b = (Button) v;
             currentOperator = b.getText().toString();
-            switch (currentOperator) {
-                case "sqrt": display = String.valueOf(sqrt(Double.parseDouble(display)));
-                    break;
-                case "^2": display = String.valueOf(Double.parseDouble(display) * Double.parseDouble(display));
-                    break;
-            }
             resetDisplay = true;
             updateScreen();
         } catch (Exception e) {
             clear(ERROR_MSG);
         }
+    }
+
+    public void onClickSqrt(View v) {
+        if (firstNum >= 0) {
+            try {
+                firstNum = Double.parseDouble(display);
+            } catch (Exception e) {
+                clear(ERROR_MSG);
+            }
+            answer = sqrt(firstNum);
+            firstNum = answer;
+            display = String.valueOf(answer);
+            resetDisplay = true;
+            updateScreen();
+        }
+    }
+
+    public void onClickSq(View v) {
+        try {
+            firstNum = Double.parseDouble(display);
+        } catch (Exception e) {
+            clear(ERROR_MSG);
+        }
+        answer = firstNum * firstNum;
+        firstNum = answer;
+        display = String.valueOf(answer);
+        resetDisplay = true;
+        updateScreen();
     }
 
     private void clear(String msg) {
@@ -81,25 +110,31 @@ public class MainActivity extends AppCompatActivity {
     public void onClickEqual(View v) {
         try {
             switch (currentOperator) {
+                case "":
+                    return;
                 case "+":
                     answer = firstNum + Double.parseDouble(display);
+                    firstNum = answer;
                     break;
                 case "-":
                     answer = firstNum - Double.parseDouble(display);
+                    firstNum = answer;
                     break;
                 case "*":
                     answer = firstNum * Double.parseDouble(display);
+                    firstNum = answer;
                     break;
                 case "/":
                     answer = firstNum / Double.parseDouble(display);
+                    firstNum = answer;
                     break;
             }
             display = String.valueOf(answer);
             resetDisplay = true;
             updateScreen();
-            firstNum = answer;
         } catch (Exception e) {
             clear(ERROR_MSG);
         }
+        currentOperator = "";
     }
 }
